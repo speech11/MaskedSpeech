@@ -4,12 +4,12 @@
 
 <article>
   <header>
-	<h1>MaskedSpeech: Context-aware Speech Synthesis with Masking Strategy</h1>
+  <h1>MaskedSpeech: Context-aware Speech Synthesis with Masking Strategy</h1>
   </header>
 </article>
 
 
-<div><b>Abstract:</b> Humans often speak in a continuous manner which leads to coherent and consistent prosody properties across neighboring utterances. However, most state-of-the-art speech synthesis systems only consider the information within each sentence and ignore the contextual semantic and acoustic features. This makes it inadequate to generate high-quality paragraph-level speech which requires high expressiveness and naturalness. To synthesize natural and expressive speech for a paragraph, a context-aware speech synthesis system named MaskedSpeech is proposed in this paper, which considers both contextual semantic and acoustic features. Inspired by the masking strategy in the speech editing research, the acoustic features of the current sentence are masked out and concatenated with those of contextual speech, and further used as additional model input. The phoneme encoder takes the concatenated phoneme sequence from neighboring sentences as input and learns fine-grained semantic information from contextual text. Furthermore, cross-utterance coarse-grained semantic features are employed to improve the prosody generation. The model is trained to reconstruct the masked acoustic features with the augmentation of both the contextual semantic and acoustic features. Experimental results demonstrate that the proposed MaskedSpeech outperformed the baseline system significantly in terms of naturalness and expressiveness.
+<div><b>Abstract:</b> Many speech synthesis systems only consider the information within each sentence and ignore the contextual semantic and acoustic features. This makes it inadequate to generate high-expressiveness paragraph-level speech. In this paper, a context-aware speech synthesis system named MaskedSpeech is proposed, which considers both contextual semantic and acoustic features. Inspired by the masking strategy in speech editing research, the acoustic features of the current sentence are masked out and concatenated with those of contextual speech, and further used as additional model input. Furthermore, cross-utterance coarse-grained and fine-grained semantic features are employed to improve the prosody generation. The model is trained to reconstruct the masked acoustic features with the augmentation of both the contextual semantic and acoustic features. Experimental results demonstrate that the MaskedSpeech outperformed the baseline systems significantly in terms of naturalness and expressiveness.
 </div>
 
 <head>
@@ -25,104 +25,127 @@
 <i>The two sentences are separated by "**", the first sentence is natural recording and the second sentence is the current synthesized speech. The texts of the current sentences are in red.</i>
 
    <p class="sample">
-   	<div>1. 青檀轻点了点头，旋即道。**<font color="red"> 不知道林动哥下一场的对手会是谁？</font>**如果赢了这一场，就能够进入前五了… </div>
-    <blockquote>
-    <table>
-    <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
-    </tr>
-    <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/103107.wav" controls=""></audio></td>
-	<td rowspan=2><audio src="demos/pse/103107.wav" controls=""></audio></td>
-  <td rowspan=2><audio src="demos/proposed/103107.wav" controls=""></audio></td>  
-    </tr>
-    </table>	
-    </blockquote>   
 
-      <div>2. 不过既然你们痴心妄想的打算在炎城立足。**<font color="red">那我或许便是得教教你们，炎城的一些规矩！</font>**鬼阎阴笑道。所谓规矩，不过是拳头大。</div>
+      <div>1. 不过既然你们痴心妄想的打算在炎城立足。**<font color="red">那我或许便是得教教你们，炎城的一些规矩！</font></div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/123865.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/123865.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/123865.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/123865.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/123865.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/123865.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/123865.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/123865.wav" controls=""></audio></td>  
 
     </tr>
     </table>   
     </blockquote>   
 
-      <div>3. 盯着那地上狼狈的岳山。这就败了？**<font color="red">这位号称炎城顶尖强者的血狼帮帮主岳山，</font>**便是如此干脆利落的败在了林动手中？</div>
+      <div>2.他能够感受到，**<font color="red">浑身的细胞，都是在这一刻发出了抗议的声音，</font> </div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/132091.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/132091.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/132091.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/102251.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/102251.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/102251.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/102251.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/102251.wav" controls=""></audio></td>  
+
+
     </tr>
     </table>   
     </blockquote>   
 
-      <div>4. 若是不走的话，下场必然只有死路一条。**<font color="red">走，你们落在他们手中，只会比死更惨。</font>**见到萱素迟疑，夏万金再度怒喝道。 </div>
+      <div>3. 然后便是凝在了药池内的一株黑色的灵药，**<font color="red">那灵药的模样，很像是一条小蛇盘踞。</font> </div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/126731.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/126731.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/126731.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/129318.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/129318.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/129318.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/129318.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/129318.wav" controls=""></audio></td>  
+
     </tr>
     </table>   
     </blockquote>   
 
-      <div>5. 林动咬着牙，忍耐着那因为透支而酸软的身体，**<font color="red">挣扎着起身，然后衣服也不脱，一头便是栽进了石池之中。</font>**随着林动落进石池，池中顿时涌出淡红色的气泡， </div>
+      <div>4. 有了赤参，他的修炼应该能快一些。**<font color="red">离族比只有半年时间了。</font></div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/102245.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/102245.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/102245.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/100096.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/100096.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/100096.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/100096.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/100096.wav" controls=""></audio></td>  
     </tr>
     </table>   
     </blockquote>   
 
-      <div>6. 他知道这神秘石符来历必然不凡。**<font color="red">所拥有的能力，应当也不止他所发现的这些，</font>**只不过寻常时候，任由他如何探测， </div>
+      <div>5. 盯着那地上狼狈的岳山。这就败了？**<font color="red">这位号称炎城顶尖强者的血狼帮帮主岳山，</font></div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/133240.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/133240.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/133240.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/132091.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/132091.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/132091.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/132091.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/132091.wav" controls=""></audio></td>  
+
     </tr>
     </table>   
     </blockquote>   
 
-      <div>7. 噗通！**<font color="red">林动咬着牙，忍耐着那因为透支而酸软的身体，</font>**挣扎着起身，然后衣服也不脱，一头便是栽进了石池之中。 </div>
+      <div>6. 所以，若是万金商会不插手的话。**<font color="red">林家与鬼刀门交手，恐怕会付出不小的代价。</font> </div>
     <blockquote>
     <table>
     <tr>
-    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech</td>  
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
     </tr>
     <tr>
-    <td rowspan=2><audio src="demos/fastspeech2/102244.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/pse/102244.wav" controls=""></audio></td>
-    <td rowspan=2><audio src="demos/proposed/102244.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/123766.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/123766.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/123766.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/123766.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/123766.wav" controls=""></audio></td>  
     </tr>
     </table>   
     </blockquote>   
+
+      <div>7. 即便只是最低级的。切，真没见识，**<font color="red">那刀形灵宝虽强，但另外一件，却丝毫不会比它弱，</font> </div>
+    <blockquote>
+    <table>
+    <tr>
+    <td align=center width=300>Fastspeech2 model</td><td align=center width=300>PBE-based model</td>  <td align=center width=300>MaskedSpeech w/o PBE</td> <td align=center width=300> Random </td>  <td align=center width=300>MaskedSpeech</td>   
+    </tr>
+    <tr>
+    <td rowspan=2><audio src="interspeech_demos/fastspeech_ste/128573.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/PBE_ste/128573.wav" controls=""></audio></td>
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_minuspse_ste/128573.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/random_pre_ste/128573.wav" controls=""></audio></td>  
+    <td rowspan=2><audio src="interspeech_demos/proposed_onlypre_ste/128573.wav" controls=""></audio></td>  
+
+    </tr>
+    </table>   
+    </blockquote>   
+
+
+
 
 
   </p>    
